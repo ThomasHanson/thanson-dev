@@ -6,7 +6,7 @@ import remarkFrontmatter from 'remark-frontmatter';
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
-  filePathPattern: `**/blog/*.mdx`,
+  filePathPattern: `**/articles/*.mdx`,
   contentType: 'mdx',
   fields: {
     title: {
@@ -54,38 +54,38 @@ export const Project = defineDocumentType(() => ({
   fields: {
     title: {
       type: 'string',
-      description: 'The title of the post',
+      description: 'The title of the project',
       required: true,
     },
     excerpt: {
       type: 'string',
-      description: 'The excerpt of the post',
+      description: 'The excerpt of the project',
       required: true,
     },
     date: {
       type: 'string',
-      description: 'The date of the post',
+      description: 'The date of the project',
       required: true,
     },
     coverImage: {
       type: 'string',
-      description: 'The cover image of the post',
+      description: 'The cover image of the project',
       required: false,
     },
     ogImage: {
       type: 'string',
-      description: 'The og cover image of the post',
+      description: 'The og cover image of the project',
       required: false,
     },
   },
   computedFields: {
     url: {
       type: 'string',
-      resolve: (post) => `/blog/${post._raw.flattenedPath}`,
+      resolve: (project) => `/projects/${project._raw.flattenedPath}`,
     },
     slug: {
       type: 'string',
-      resolve: (post) => post._raw.flattenedPath,
+      resolve: (project) => project._raw.flattenedPath,
     },
   },
 }));

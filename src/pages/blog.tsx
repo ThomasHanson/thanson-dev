@@ -1,3 +1,4 @@
+import Page from "components/Page";
 import Link from "next/link";
 import { allPosts } from "../../.contentlayer/generated";
 
@@ -13,19 +14,21 @@ interface BlogProps {
 
 export default function Blog({ posts }: BlogProps) {
   return (
-    <section>
-      <ul>
-        {posts.map(({ slug, date, title }) => (
-          <li key={slug}>
-            <Link href={`/posts/${slug}`}>
-              {title}
-            </Link>
-            <br />
-            <small>{date}</small>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <Page>
+      <section>
+        <ul>
+          {posts.map(({ slug, date, title }) => (
+            <li key={slug}>
+              <Link href={`/posts/${slug}`}>
+                {title}
+              </Link>
+              <br />
+              <small>{date}</small>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </Page>
   );
 }
 
