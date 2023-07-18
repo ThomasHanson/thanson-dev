@@ -32,7 +32,7 @@ const Navbar = () => {
               onChange={() => toggleTheme()}
               className={`${
                 theme === 'dark' ? 'bg-green-600' : 'bg-gray-600'
-              } relative inline-flex flex-shrink-0 h-6 w-12 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+              } relative inline-flex flex-shrink-0 h-5 w-11 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
             >
               <span className="sr-only">Toggle dark mode</span>
               <span
@@ -58,7 +58,7 @@ const NavItem = ({ href, children }: NavItemProps) => {
   return (
     <Link
       href={href}
-      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+      className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
     >
       {children}
     </Link>

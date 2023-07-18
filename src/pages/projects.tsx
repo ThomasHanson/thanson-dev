@@ -6,6 +6,7 @@ interface Project {
   slug: string;
   date: string;
   title: string;
+  summary: string;
   tags: string[];
   demoLink: string;
   githubLink: string;
@@ -20,7 +21,7 @@ export default function Projects({ projects }: ProjectProps) {
     <Page>
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {projects.map(({ slug, title, tags, demoLink, githubLink }) => (
+          {projects.map(({ slug, title, summary, tags, demoLink, githubLink }) => (
             <div key={slug} className="border border-gray-300 rounded-lg overflow-hidden shadow-lg">
               <img className="w-full" src="https://v1.tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains" />
               <div className="px-6 py-4">
@@ -35,12 +36,12 @@ export default function Projects({ projects }: ProjectProps) {
                   ))}
                 </div>
                 <div className="font-bold text-xl mt-2 mb-2">
-                  <Link href={`/projects/${slug}`}>
+                  <Link href={`/${slug}`}>
                     {title}
                   </Link>
                 </div>
                 <p className="text-base">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                  {summary}
                 </p>
                 <br />
                 <div className="mt-2">
