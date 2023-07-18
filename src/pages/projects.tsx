@@ -29,8 +29,8 @@ export default function Projects({ projects }: ProjectProps) {
                 coverImage &&
                 <Image 
                   className="w-full"
-                  src="https://v1.tailwindcss.com/img/card-top.jpg" 
-                  alt="Sunset in the mountains" 
+                  src={coverImage}
+                  alt={`Cover letter for ${title}`}
                 />
               }
               <div className="px-6 py-4">
