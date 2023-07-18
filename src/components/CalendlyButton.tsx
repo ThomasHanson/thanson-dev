@@ -18,12 +18,11 @@ export default function CalendlyModal() {
   }
 
   return (
-    <>
-      <PopupButton
-        url="https://calendly.com/thanson-dev/15-20-minute-screening-interview"
-        rootElement={rootElement}
-        text="Click here to schedule!"
-      />
-    </>
+    <PopupButton
+      url="https://calendly.com/thanson-dev/15-20-minute-screening-interview"
+      rootElement={rootElement}
+      text="📅 Schedule a meeting with me!"
+      className="text-2xl"
+    />
   );
 }

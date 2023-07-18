@@ -26,9 +26,7 @@ export default function ContactForm() {
     <form onSubmit={onSubmit} className="max-w-lg mx-auto">
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label htmlFor="firstName" className="block font-medium mb-1">
-            First Name
-          </label>
+          <label htmlFor="firstName" className="block mb-2 font-medium">First Name</label>
           <input
             type="text"
             id="firstName"
