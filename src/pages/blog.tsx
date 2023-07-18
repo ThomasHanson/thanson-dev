@@ -1,5 +1,5 @@
-import Page from "components/Page";
 import Link from "next/link";
+import Page from "~/components/Page";
 import { allPosts } from "../../.contentlayer/generated";
 
 interface Post {

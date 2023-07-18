@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import siteDetails from '../data/siteDetails';
+import siteDetails from '../../data/siteDetails';
 
 interface GlobalDetailsProps {
   title: string;

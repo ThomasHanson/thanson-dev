@@ -1,4 +1,4 @@
-import siteDetails from '../data/siteDetails';
+import siteDetails from '../../data/siteDetails';
 import Navbar from './Navbar';
 import { PageDetails } from './SiteDetails';
 

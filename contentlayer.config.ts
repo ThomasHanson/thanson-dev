@@ -6,7 +6,7 @@ import remarkFrontmatter from 'remark-frontmatter';
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
-  filePathPattern: `**/articles/*.mdx`,
+  filePathPattern: '**/articles/*.mdx',
   contentType: 'mdx',
   fields: {
     title: {
@@ -14,15 +14,30 @@ export const Post = defineDocumentType(() => ({
       description: 'The title of the post',
       required: true,
     },
-    excerpt: {
+    summary: {
       type: 'string',
-      description: 'The excerpt of the post',
+      description: 'The summary of the post',
       required: true,
     },
     date: {
       type: 'string',
       description: 'The date of the post',
       required: true,
+    },
+    lastMod: {
+      type: 'date',
+      description: 'The last modified date of the post',
+      required: false,
+    },
+    draft: {
+      type: 'boolean',
+      description: 'Indicates if the post is a draft',
+      required: false,
+      defaultValue: false,
+    },
+    tags: {
+      type: 'list',
+      of: { type: 'string' },
     },
     coverImage: {
       type: 'string',
@@ -33,7 +48,7 @@ export const Post = defineDocumentType(() => ({
       type: 'string',
       description: 'The og cover image of the post',
       required: false,
-    },
+    }
   },
   computedFields: {
     url: {
@@ -57,7 +72,7 @@ export const Project = defineDocumentType(() => ({
       description: 'The title of the project',
       required: true,
     },
-    excerpt: {
+    summary: {
       type: 'string',
       description: 'The excerpt of the project',
       required: true,
@@ -66,6 +81,20 @@ export const Project = defineDocumentType(() => ({
       type: 'string',
       description: 'The date of the project',
       required: true,
+    },
+    demoLink: {
+      type: 'string',
+      description: 'The link for the live demo of the project',
+      required: false,
+    },
+    githubLink: {
+      type: 'string',
+      description: 'The link for the GitHub repo of the project',
+      required: false,
+    },
+    tags: {
+      type: 'list',
+      of: { type: 'string' },
     },
     coverImage: {
       type: 'string',
@@ -109,7 +138,7 @@ const prettyCodeOptions = {
 };
 
 export default makeSource({
-  contentDirPath: 'content',
+  contentDirPath: 'data',
   documentTypes: [Post, Project],
   mdx: {
     remarkPlugins: [remarkFrontmatter],
