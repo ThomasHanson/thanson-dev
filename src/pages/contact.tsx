@@ -1,16 +1,15 @@
+import CalendlyButton from "~/components/CalendlyButton";
+import ContactForm from "~/components/ContactForm";
 import Page from "~/components/Page";
 
 export default function Contact() {
-
   return (
     <Page>
       <section>
-      <form
-        className="w-full max-w-lg m-auto py-10 mt-10 px-10 border"
-      >
-
-          
-        </form>
+        <div className="flex justify-center">
+          <CalendlyButton />
+        </div>
+        <ContactForm />
       </section>
     </Page>
   );

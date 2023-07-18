@@ -20,7 +20,7 @@ export default function Projects({ projects }: ProjectProps) {
   return (
     <Page>
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map(({ slug, title, summary, tags, demoLink, githubLink }) => (
             <div key={slug} className="border border-gray-300 rounded-lg overflow-hidden shadow-lg">
               <img className="w-full" src="https://v1.tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains" />

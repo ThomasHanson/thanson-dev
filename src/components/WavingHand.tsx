@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 
 const WavingHand = () => {
-
   return (
     <motion.div
       style={{
@@ -11,7 +10,14 @@ const WavingHand = () => {
         paddingRight: '45px',
         display: 'inline-block',
       }}
-      animate={{ rotate: 20 }}
+      animate={{
+        rotate: 20,
+      }}
+      transition={{
+        repeat: Infinity, // Repeat the animation infinitely
+        repeatType: 'reverse', // Reverse the animation after each iteration
+        duration: 1, // Duration of each animation cycle (in seconds)
+      }}
     >
       👋
     </motion.div>
