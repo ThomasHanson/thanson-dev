@@ -6,7 +6,7 @@ import remarkFrontmatter from 'remark-frontmatter';
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
-  filePathPattern: '**/articles/*.mdx',
+  filePathPattern: '**/blog/*.mdx',
   contentType: 'mdx',
   fields: {
     title: {
