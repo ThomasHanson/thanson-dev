@@ -26,9 +26,11 @@ export default function Blog({ posts }: BlogProps) {
               {
                 coverImage &&
                 <Image 
-                  className="w-full"
                   src={coverImage}
-                  alt={`Cover letter for ${title}`}
+                  alt={`Cover image for ${title}`}
+                  width="0"
+                  height="0"
+                  className="w-full"
                 />
               }
               <div className="px-6 py-4">

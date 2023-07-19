@@ -28,9 +28,9 @@ export default function Projects({ projects }: ProjectProps) {
               {
                 coverImage &&
                 <Image 
-                  className="w-full"
                   src={coverImage}
-                  alt={`Cover letter for ${title}`}
+                  className="w-full"
+                  alt={`Cover image for ${title}`}
                 />
               }
               <div className="px-6 py-4">
