@@ -45,7 +45,7 @@ export default function Blog({ posts }: BlogProps) {
                   ))}
                 </div>
                 <div className="font-bold text-xl mt-2 mb-2">
-                  <Link href={`/${slug}`}>
+                  <Link href={`/blog/${slug}`}>
                     {title}
                   </Link>
                 </div>

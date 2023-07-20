@@ -1,15 +1,15 @@
-import type { Post } from "contentlayer/generated";
-import { allPosts } from "contentlayer/generated";
+import type { Project } from "contentlayer/generated";
+import { allProjects } from "contentlayer/generated";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import Page from "~/components/Page";
 
 type Props = {
-  post: Post;
+  project: Project;
 };
 
-export default function PostPage({ post }: Props) {
-  const MDXComponent = useMDXComponent(post.body.code)
+export default function ProjectPage({ project }: Props) {
+  const MDXComponent = useMDXComponent(project.body.code)
   return (
     <Page>
       <div className="container mx-auto mt-16 max-w-[920px] py-12 px-4">
@@ -17,7 +17,7 @@ export default function PostPage({ post }: Props) {
           <div className="flex items-center text-base">
           </div>
           <h1 className="mb-3 font-mono text-4xl font-semibold">
-            {post.title}
+            {project.title}
           </h1>
           <div className="h-8" />
         </div>
@@ -28,8 +28,8 @@ export default function PostPage({ post }: Props) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = allPosts.map((post) => ({
-    params: { slug: post.slug },
+  const paths = allProjects.map((project) => ({
+    params: { slug: project.slug },
   }));
 
   return {
@@ -41,14 +41,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params } = context;
   const slug = params?.slug as string;
-  const post = allPosts.find((p) => p.slug === slug);
-  if (!post) {
-    throw new Error(`Post with slug ${slug} not found`);
+  const project = allProjects.find((p) => p.slug === slug);
+  if (!project) {
+    throw new Error(`Project with slug ${slug} not found`);
   }
 
   return {
     props: {
-      post
+      project
     },
   };
 };

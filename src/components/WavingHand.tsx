@@ -16,7 +16,7 @@ const WavingHand = () => {
       transition={{
         repeat: Infinity, // Repeat the animation infinitely
         repeatType: 'reverse', // Reverse the animation after each iteration
-        duration: 1, // Duration of each animation cycle (in seconds)
+        duration: 0.75, // Duration of each animation cycle (in seconds)
       }}
     >
       👋

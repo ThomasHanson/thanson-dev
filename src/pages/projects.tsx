@@ -45,7 +45,7 @@ export default function Projects({ projects }: ProjectProps) {
                   ))}
                 </div>
                 <div className="font-bold text-xl mt-2 mb-2">
-                  <Link href={`/${slug}`}>
+                  <Link href={`/projects/${slug}`}>
                     {title}
                   </Link>
                 </div>

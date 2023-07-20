@@ -51,14 +51,21 @@ export const Post = defineDocumentType(() => ({
     }
   },
   computedFields: {
-    url: {
-      type: 'string',
-      resolve: (post) => `/blog/${post._raw.flattenedPath}`,
-    },
     slug: {
-      type: 'string',
-      resolve: (post) => post._raw.flattenedPath,
+      type: "string",
+      resolve: (post) => {
+        const parts = post._raw.flattenedPath.split("/");
+        return parts[parts.length - 1];
+      },
     },
+    url: {
+      type: "string",
+      resolve: (post) => {
+        const parts = post._raw.flattenedPath.split("/");
+        const slug = parts[parts.length - 1];
+        return `/blog/${slug}`;
+      },
+    }
   },
 }));
 
@@ -108,14 +115,21 @@ export const Project = defineDocumentType(() => ({
     },
   },
   computedFields: {
-    url: {
-      type: 'string',
-      resolve: (project) => `/projects/${project._raw.flattenedPath}`,
-    },
     slug: {
-      type: 'string',
-      resolve: (project) => project._raw.flattenedPath,
+      type: "string",
+      resolve: (post) => {
+        const parts = post._raw.flattenedPath.split("/");
+        return parts[parts.length - 1];
+      },
     },
+    url: {
+      type: "string",
+      resolve: (post) => {
+        const parts = post._raw.flattenedPath.split("/");
+        const slug = parts[parts.length - 1];
+        return `/projects/${slug}`;
+      },
+    }
   },
 }));
 
