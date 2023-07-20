@@ -1,19 +1,28 @@
 import { Switch } from '@headlessui/react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
-import { useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { BsList } from 'react-icons/bs';
 
 const Navbar = () => {
+  const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setMenuOpen] = useState(false);
-
+  
   function toggleTheme() {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   }
 
   function toggleMenu() {
     setMenuOpen(!isMenuOpen);
+  }
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
   }
 
   return (
