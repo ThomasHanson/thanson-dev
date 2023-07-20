@@ -21,7 +21,9 @@ export default function PostPage({ post }: Props) {
           </h1>
           <div className="h-8" />
         </div>
-        <MDXComponent />
+        <article className="prose">
+          <MDXComponent />
+        </article>
       </div>
     </Page>
   );
