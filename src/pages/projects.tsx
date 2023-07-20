@@ -25,16 +25,18 @@ export default function Projects({ projects }: ProjectProps) {
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map(({ slug, title, summary, coverImage, tags, demoLink, githubLink }) => (
-            <div key={slug} className="border border-gray-300 rounded-lg overflow-hidden shadow-lg">
-              {
-                coverImage &&
-                <Image 
-                  src={coverImage}
-                  className="w-full"
-                  alt={`Cover image for ${title}`}
-                />
-              }
-              <div className="px-6 py-4">
+            <div key={slug} className="border border-gray-300 rounded-lg overflow-hidden flex flex-col h-full">
+              <div className="h-full">
+                {
+                  coverImage &&
+                  <Image 
+                    src={coverImage}
+                    className="w-full h-full object-cover"
+                    alt={`Cover image for ${title}`}
+                  />
+                }
+              </div>
+              <div className="px-6 py-4 flex flex-col justify-between h-full">
                 <div>
                   {tags && tags.length > 0 && tags.map((tag) => (
                     <span
@@ -54,11 +56,11 @@ export default function Projects({ projects }: ProjectProps) {
                   {summary}
                 </p>
                 <br />
-                <div className="mt-2">
+                <div className="mt-auto"> {/* mt-auto will push content to the bottom */}
                   {demoLink && (
                     <Link 
                       href={demoLink}
-                      className="px-6 py-2 flex justify-center items-center bg-blue-500 hover:bg-blue-600 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg mb-2"  // Added mb-2 here
+                      className="px-6 py-2 flex justify-center items-center bg-blue-500 hover:bg-blue-600 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg mb-2"
                     >
                       <BsEye className="mr-2" />
                       See Live Demo
