@@ -16,7 +16,7 @@ export default function Home() {
               <span className="px-4">Hi, I&apos;m Thomas</span>
             </h1>
           <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-            I’m a Computer Science student at the University of Central Florida looking to pursue a Software Engineering position. I love building full-stack web applications and solving technical problems through code. Thanks for visiting my site.
+            I&apos;m a Computer Science student at the University of Central Florida looking to pursue a Software Engineering position. I love building full-stack web applications and solving technical problems through code. Thanks for visiting my site.
           </p>
           <a href="#" className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
             Contact Me

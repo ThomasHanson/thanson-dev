@@ -6,7 +6,7 @@ export default function About() {
       <div className="flex justify-center">
         <section className="w-3/4 p-4 max-w-screen-md">
           <p className="text-center mb-6">
-            My name is Thomas. I'm a graduate from the University of Central Florida with a Bachelor's Degree in Computer Science. I've always loved technology/programming and began learning to code in Java when I was about 14, after being interested in how things worked, or how I could make them better.
+            My name is Thomas. I&apos;m a graduate from the University of Central Florida with a Bachelor&apos;s Degree in Computer Science. I&apos;ve always loved technology/programming and began learning to code in Java when I was about 14, after being interested in how things worked, or how I could make them better.
           </p>
         
           <p className="text-center mb-6">
