@@ -1,6 +1,7 @@
 import { allProjects } from "contentlayer/generated";
 import Image from "next/image";
 import Link from "next/link";
+import { BsArrowRight, BsEye, BsGithub, BsLink } from "react-icons/bs";
 import Page from "~/components/Page";
 
 interface Project {
@@ -55,13 +56,21 @@ export default function Projects({ projects }: ProjectProps) {
                 <br />
                 <div className="mt-2">
                   {demoLink && (
-                    <Link href={demoLink}>
-                      Demo
+                    <Link 
+                      href={demoLink}
+                      className="px-6 py-2 flex justify-center items-center bg-blue-500 hover:bg-blue-600 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg mb-2"  // Added mb-2 here
+                    >
+                      <BsEye className="mr-2" />
+                      See Live Demo
                     </Link>
                   )}
                   {githubLink && (
-                    <Link href={githubLink} className="px-6">
-                      GitHub
+                    <Link
+                      href={githubLink}
+                      className="px-6 py-2 flex justify-center items-center bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                    >
+                      <BsGithub className="mr-2" />
+                      View on GitHub
                     </Link>
                   )}
                 </div>

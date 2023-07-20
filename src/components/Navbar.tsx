@@ -1,7 +1,7 @@
 import { Switch } from '@headlessui/react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BsList } from 'react-icons/bs';
 
 const Navbar = () => {
