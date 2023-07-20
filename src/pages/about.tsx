@@ -3,9 +3,20 @@ import Page from "~/components/Page";
 export default function About() {
   return (
     <Page>
-      <section>
-        About
-      </section>
+      <div className="flex justify-center">
+        <section className="w-3/4 p-4 max-w-screen-md">
+          <p className="text-center mb-6">
+            My name is Thomas. I'm a graduate from the University of Central Florida with a Bachelor's Degree in Computer Science. I've always loved technology/programming and began learning to code in Java when I was about 14, after being interested in how things worked, or how I could make them better.
+          </p>
+        
+          <p className="text-center mb-6">
+            I am currently working on learning new technologies and pursuing a Software Engineering position, where I can land a dream job and grow my career. You can find some of my other projects on my GitHub.
+          </p>
+          <p className="text-center mb-6">
+            Outside of work, I love to try new things and am a self-proclaimed adrenaline junkie. I have been skydiving over 15 times and learned how to fly a paramotor at Aviator PPG with 7 other student pilots.
+          </p>
+        </section>
+      </div>
     </Page>
   );
 }
