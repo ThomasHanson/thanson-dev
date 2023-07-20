@@ -1,7 +1,7 @@
+import { allProjects } from "contentlayer/generated";
 import Image from "next/image";
 import Link from "next/link";
 import Page from "~/components/Page";
-import { allProjects } from "../../.contentlayer/generated";
 
 interface Project {
   slug: string;
