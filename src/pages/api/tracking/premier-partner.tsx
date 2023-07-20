@@ -6,7 +6,7 @@ interface User {
   startTime: Date;
 }
 
-let users: User[] = []; // Array to store user information
+const users: User[] = []; // Array to store user information
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {

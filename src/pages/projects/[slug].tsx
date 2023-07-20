@@ -27,18 +27,18 @@ export default function ProjectPage({ project }: Props) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = () => {
   const paths = allProjects.map((project) => ({
     params: { slug: project.slug },
   }));
 
-  return {
+  return Promise.resolve({
     paths,
     fallback: false,
-  };
+  });
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = (context) => {
   const { params } = context;
   const slug = params?.slug as string;
   const project = allProjects.find((p) => p.slug === slug);
@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      project
+      project,
     },
   };
 };

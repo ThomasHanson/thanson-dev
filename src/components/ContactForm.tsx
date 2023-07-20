@@ -23,7 +23,7 @@ export default function ContactForm() {
   });
 
   return (
-    <form onSubmit={onSubmit} className="max-w-lg mx-auto">
+    <form className="max-w-lg mx-auto">
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label htmlFor="firstName" className="block mb-2 font-medium">First Name</label>

@@ -75,7 +75,7 @@ export default function Projects({ projects }: ProjectProps) {
 }
 
 // Statically fetch all projects
-export async function getStaticProps() {
+export function getStaticProps() {
   const projects = allProjects.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );

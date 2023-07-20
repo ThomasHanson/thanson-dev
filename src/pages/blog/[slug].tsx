@@ -27,18 +27,18 @@ export default function PostPage({ post }: Props) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = () => {
   const paths = allPosts.map((post) => ({
     params: { slug: post.slug },
   }));
 
-  return {
+  return Promise.resolve({
     paths,
     fallback: false,
-  };
+  });
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = (context) => {
   const { params } = context;
   const slug = params?.slug as string;
   const post = allPosts.find((p) => p.slug === slug);
@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      post
+      post,
     },
   };
 };

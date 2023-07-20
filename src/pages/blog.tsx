@@ -63,7 +63,7 @@ export default function Blog({ posts }: BlogProps) {
 }
 
 // Statically fetch all posts
-export async function getStaticProps() {
+export function getStaticProps() {
   
   const posts = allPosts.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()

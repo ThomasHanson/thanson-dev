@@ -29,11 +29,11 @@ const Navbar = () => {
             <button
               type="button"
               className={`text-gray-600 hover:text-gray-900 focus:outline-none focus:text-gray-900 ${
-                theme === 'dark' && 'text-white'
+                theme === 'dark' ? 'text-white' : ''
               }`}
               onClick={toggleMenu}
             >
-              <BsList className={`h-6 w-6 ${theme === 'dark' && 'text-white'}`} />
+              <BsList className={`h-6 w-6 ${theme === 'dark' ? 'text-white' : ''}`} />
             </button>
           </div>
 

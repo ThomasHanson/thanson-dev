@@ -13,7 +13,7 @@ export default function Home() {
         <div className="mr-auto place-self-center lg:col-span-7">
           <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">
               <WavingHand />
-              <span className="px-4">Hi, I'm Thomas</span>
+              <span className="px-4">Hi, I&apos;m Thomas</span>
             </h1>
           <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
             I’m a Computer Science student at the University of Central Florida looking to pursue a Software Engineering position. I love building full-stack web applications and solving technical problems through code. Thanks for visiting my site.
