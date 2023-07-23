@@ -13,6 +13,38 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
+interface ResponseData {
+  error?: string;
+}
+
+async function sendFormToServer(data: FormData) {
+  const res = await fetch("/api/sendgrid", {
+    body: JSON.stringify({
+      "email": data.email,
+      "firstName": data.firstName,
+      "lastName": data.lastName,
+      "phoneNumber": data.phoneNumber,
+      "emailAddress": data.email,
+      "preferredCommMethod": data.preferredCommMethod,
+      "comments": data.comments,
+      "subjectIn": "[thanson.dev] Contact Form Submission",
+      "subjectOut": "[thanson.dev] Thank you for your submission!"
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+  });
+
+  const responseData = await res.json() as ResponseData;
+
+  if (res.ok) {
+    console.log('Email(s) sent successfully!');
+  } else {
+    console.error('Error sending email:', responseData.error);
+  }
+}
+
 export default function ContactForm() {
   const {
     register,
@@ -24,39 +56,12 @@ export default function ContactForm() {
 
   const onSubmit = handleSubmit(async (data) => {
     setIsSending(true);
-
-    const res = await fetch("/api/sendgrid", {
-      body: JSON.stringify({
-        "email": data.email,
-        "firstName": data.firstName,
-        "lastName": data.lastName,
-        "phoneNumber": data.phoneNumber,
-        "emailAddress": data.email,
-        "preferredCommMethod": data.preferredCommMethod,
-        "comments": data.comments,
-        "subjectIn": "[thanson.dev] Contact Form Submission",
-        "subjectOut": "[thanson.dev] Thank you for your submission!",
-        "message": "",
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    });
-
-    const { error } = await res.json();
-    if (error) {
-      console.error('Error sending email:', error);
-      return;
-    }
-
-    console.log('Email(s) sent successfully!');
-
+    await sendFormToServer(data);
     setIsSending(false);
   });
 
   return (
-    <form className="max-w-lg mx-auto" onSubmit={onSubmit}>
+    <form className="max-w-lg mx-auto" onSubmit={void onSubmit}>
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label htmlFor="firstName" className="block mb-2 font-medium">First Name</label>
