@@ -9,7 +9,7 @@ const siteDetails = {
   siteLogo: '/static/images/logo.png',
   image: '/static/images/headshot.png',
   socialBanner: '/static/images/headshot.png',
-  email: 'hello@thanson.dev',
+  email: 'contact@thanson.dev',
   github: 'https://github.com/ThomasHanson',
   twitter: 'https://twitter.com/ThomasHansonDev',
   facebook: 'https://facebook.com',

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -6,6 +7,7 @@ const schema = z.object({
   lastName: z.string().nonempty('Last name is required'),
   email: z.string().email('Invalid email format'),
   phoneNumber: z.string().min(10, 'Phone number must be at least 10 characters'),
+  preferredCommMethod: z.enum(['Text', 'Email']),
   comments: z.string(),
 });
 
@@ -18,12 +20,43 @@ export default function ContactForm() {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data); // Handle form submission here
+  const [isSending, setIsSending] = useState(false);
+
+  const onSubmit = handleSubmit(async (data) => {
+    setIsSending(true);
+
+    const res = await fetch("/api/sendgrid", {
+      body: JSON.stringify({
+        "email": data.email,
+        "firstName": data.firstName,
+        "lastName": data.lastName,
+        "phoneNumber": data.phoneNumber,
+        "emailAddress": data.email,
+        "preferredCommMethod": data.preferredCommMethod,
+        "comments": data.comments,
+        "subjectIn": "[thanson.dev] Contact Form Submission",
+        "subjectOut": "[thanson.dev] Thank you for your submission!",
+        "message": "",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
+
+    const { error } = await res.json();
+    if (error) {
+      console.error('Error sending email:', error);
+      return;
+    }
+
+    console.log('Email(s) sent successfully!');
+
+    setIsSending(false);
   });
 
   return (
-    <form className="max-w-lg mx-auto">
+    <form className="max-w-lg mx-auto" onSubmit={onSubmit}>
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label htmlFor="firstName" className="block mb-2 font-medium">First Name</label>
@@ -80,6 +113,30 @@ export default function ContactForm() {
           )}
         </div>
         <div className="col-span-2">
+          <label className="block font-medium mb-1">Preferred Communication Method</label>
+          <div className="flex items-center">
+            <input
+              type="radio"
+              id="preferredCommMethodText"
+              {...register('preferredCommMethod', { required: true })}
+              value="Text"
+              className="mr-2"
+            />
+            <label htmlFor="preferredCommMethodText" className="mr-4">Text</label>
+            <input
+              type="radio"
+              id="preferredCommMethodEmail"
+              {...register('preferredCommMethod', { required: true })}
+              value="Email"
+              className="mr-2"
+            />
+            <label htmlFor="preferredCommMethodEmail">Email</label>
+          </div>
+          {errors.preferredCommMethod && (
+            <span className="text-red-500 text-sm">Preferred method of communication is required.</span>
+          )}
+        </div>
+        <div className="col-span-2">
           <label htmlFor="comments" className="block font-medium mb-1">
             Comments
           </label>
@@ -90,8 +147,12 @@ export default function ContactForm() {
           />
         </div>
       </div>
-      <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4">
-        Submit
+      <button
+        type="submit"
+        className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4"
+        disabled={isSending}
+      >
+        {isSending ? 'Sending...' : 'Submit'}
       </button>
     </form>
   );
