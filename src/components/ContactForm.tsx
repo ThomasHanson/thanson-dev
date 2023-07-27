@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 const schema = z.object({
@@ -13,38 +14,6 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-interface ResponseData {
-  error?: string;
-}
-
-async function sendFormToServer(data: FormData) {
-  const res = await fetch("/api/sendgrid", {
-    body: JSON.stringify({
-      "email": data.email,
-      "firstName": data.firstName,
-      "lastName": data.lastName,
-      "phoneNumber": data.phoneNumber,
-      "emailAddress": data.email,
-      "preferredCommMethod": data.preferredCommMethod,
-      "comments": data.comments,
-      "subjectIn": "[thanson.dev] Contact Form Submission",
-      "subjectOut": "[thanson.dev] Thank you for your submission!"
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-  });
-
-  const responseData = await res.json() as ResponseData;
-
-  if (res.ok) {
-    console.log('Email(s) sent successfully!');
-  } else {
-    console.error('Error sending email:', responseData.error);
-  }
-}
-
 export default function ContactForm() {
   const {
     register,
@@ -54,14 +23,35 @@ export default function ContactForm() {
 
   const [isSending, setIsSending] = useState(false);
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     setIsSending(true);
-    await sendFormToServer(data);
-    setIsSending(false);
-  });
-
+  
+    try {
+      // Perform API request to submit the form data
+      const response = await axios.post("/api/sendgrid", {
+        "email": data.email,
+        "firstName": data.firstName,
+        "lastName": data.lastName,
+        "phoneNumber": data.phoneNumber,
+        "emailAddress": data.email,
+        "preferredCommMethod": data.preferredCommMethod,
+        "comments": data.comments,
+        "subjectIn": "[thanson.dev] Contact Form Submission",
+        "subjectOut": "[thanson.dev] Thank you for your submission!"
+      });
+  
+      // Handle the API response as needed (e.g., show a success message)
+      console.log('API Response:', response.data);
+    } catch (error) {
+      console.error('API Error:', error);
+      // Handle the error as needed (e.g., show an error message)
+    } finally {
+      setIsSending(false);
+    }
+  };
+  
   return (
-    <form className="max-w-lg mx-auto" onSubmit={void onSubmit}>
+    <form className="max-w-lg mx-auto" onSubmit={handleSubmit(onSubmit)}>
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label htmlFor="firstName" className="block mb-2 font-medium">First Name</label>
