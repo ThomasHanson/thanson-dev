@@ -1,7 +1,7 @@
 import { allProjects } from "contentlayer/generated";
 import Image from "next/image";
 import Link from "next/link";
-import { BsArrowRight, BsEye, BsGithub, BsLink } from "react-icons/bs";
+import { BsEye, BsGithub } from "react-icons/bs";
 import Page from "~/components/Page";
 
 interface Project {

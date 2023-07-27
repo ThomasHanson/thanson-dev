@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form/dist/types/form';
 import { PatternFormat } from 'react-number-format';
 import { z } from 'zod';
 
@@ -57,7 +58,6 @@ export default function ContactForm() {
 
     } catch (error) {
       console.error('API Error:', error);
-      // Handle the error as needed (e.g., show an error message)
     } finally {
       setIsSubmitting(false);
     }
