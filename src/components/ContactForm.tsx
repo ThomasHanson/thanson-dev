@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { PatternFormat } from 'react-number-format';
 import { z } from 'zod';
 
 const schema = z.object({
@@ -18,13 +19,16 @@ export default function ContactForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>();
 
-  const [isSending, setIsSending] = useState(false);
+  const [phone, setPhone] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    setIsSending(true);
+    setIsSubmitting(true);
   
     try {
       // Perform API request to submit the form data
@@ -32,7 +36,7 @@ export default function ContactForm() {
         "email": data.email,
         "firstName": data.firstName,
         "lastName": data.lastName,
-        "phoneNumber": data.phoneNumber,
+        "phoneNumber": phone,
         "emailAddress": data.email,
         "contactMethod": data.contactMethod,
         "comments": data.comments,
@@ -42,16 +46,28 @@ export default function ContactForm() {
   
       // Handle the API response as needed (e.g., show a success message)
       console.log('API Response:', response.data);
+
+      // Reset the form after successful submission
+      reset();
+      setPhone('');
+
+      setIsSubmitted(true);
+
     } catch (error) {
       console.error('API Error:', error);
       // Handle the error as needed (e.g., show an error message)
     } finally {
-      setIsSending(false);
+      setIsSubmitting(false);
     }
   };
   
   return (
     <form className="max-w-lg mx-auto" onSubmit={handleSubmit(onSubmit)}>
+      {isSubmitted && (
+        <div className="bg-green-100 text-green-800 px-4 py-3 rounded-md mb-4">
+          Form submitted successfully!
+        </div>
+      )}
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label htmlFor="firstName" className="block mb-2 font-medium">First Name</label>
@@ -97,10 +113,15 @@ export default function ContactForm() {
           <label htmlFor="phoneNumber" className="block font-medium mb-1">
             Phone Number
           </label>
-          <input
+          <PatternFormat
             type="tel"
             id="phoneNumber"
+            format="+1 (###) ###-####"
+            mask="_"
+            onValueChange={(value) => setPhone(value.formattedValue)}
+            required
             {...register('phoneNumber')}
+            value={phone}
             className="border-gray-300 rounded-md w-full p-2"
           />
           {errors.phoneNumber && (
@@ -108,7 +129,7 @@ export default function ContactForm() {
           )}
         </div>
         <div className="col-span-2">
-          <label className="block font-medium mb-1">Preferred Communication Method</label>
+          <label className="block font-medium mb-1">Preferred Contact Method</label>
           <div className="flex items-center">
             <input
               type="radio"
@@ -145,9 +166,9 @@ export default function ContactForm() {
       <button
         type="submit"
         className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4"
-        disabled={isSending}
+        disabled={isSubmitting}
       >
-        {isSending ? 'Sending...' : 'Submit'}
+        {isSubmitting ? 'Sending...' : 'Submit'}
       </button>
     </form>
   );

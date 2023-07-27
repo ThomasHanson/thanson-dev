@@ -16,7 +16,17 @@ export default function Uses() {
     <Page>
       <section>
         <h1 className="text-3xl font-bold">Uses</h1>
-        <span>Inspired by Wes Bos&apos; <Link href="https://github.com/wesbos/awesome-uses">awesome-uses</Link> collection.</span>
+        <span>
+          Inspired by Wes Bos&apos; 
+          <Link 
+            href="https://github.com/wesbos/awesome-uses"
+            className="text-blue-600 hover:underline"
+            rel="noopener noreferrer" target="_blank"
+            >
+              awesome-uses
+            </Link> 
+          collection.
+          </span>
 
         <div>
           <h2 className="text-xl font-semibold mt-4 mb-2">Hardware</h2>
