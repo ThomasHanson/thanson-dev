@@ -8,7 +8,7 @@ const schema = z.object({
   lastName: z.string().nonempty('Last name is required'),
   email: z.string().email('Invalid email format'),
   phoneNumber: z.string().min(10, 'Phone number must be at least 10 characters'),
-  preferredCommMethod: z.enum(['Text', 'Email']),
+  contactMethod: z.enum(['Text', 'Email']),
   comments: z.string(),
 });
 
@@ -28,13 +28,13 @@ export default function ContactForm() {
   
     try {
       // Perform API request to submit the form data
-      const response = await axios.post("/api/sendgrid", {
+      const response = await axios.post("/api/sendEmail", {
         "email": data.email,
         "firstName": data.firstName,
         "lastName": data.lastName,
         "phoneNumber": data.phoneNumber,
         "emailAddress": data.email,
-        "preferredCommMethod": data.preferredCommMethod,
+        "contactMethod": data.contactMethod,
         "comments": data.comments,
         "subjectIn": "[thanson.dev] Contact Form Submission",
         "subjectOut": "[thanson.dev] Thank you for your submission!"
@@ -112,23 +112,23 @@ export default function ContactForm() {
           <div className="flex items-center">
             <input
               type="radio"
-              id="preferredCommMethodText"
-              {...register('preferredCommMethod', { required: true })}
+              id="contactMethodText"
+              {...register('contactMethod', { required: true })}
               value="Text"
               className="mr-2"
             />
-            <label htmlFor="preferredCommMethodText" className="mr-4">Text</label>
+            <label htmlFor="contactMethodText" className="mr-4">Text</label>
             <input
               type="radio"
-              id="preferredCommMethodEmail"
-              {...register('preferredCommMethod', { required: true })}
+              id="contactMethodEmail"
+              {...register('contactMethod', { required: true })}
               value="Email"
               className="mr-2"
             />
-            <label htmlFor="preferredCommMethodEmail">Email</label>
+            <label htmlFor="contactMethodEmail">Email</label>
           </div>
-          {errors.preferredCommMethod && (
-            <span className="text-red-500 text-sm">Preferred method of communication is required.</span>
+          {errors.contactMethod && (
+            <span className="text-red-500 text-sm">Preferred contact method is required.</span>
           )}
         </div>
         <div className="col-span-2">

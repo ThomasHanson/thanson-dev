@@ -14,7 +14,7 @@ interface RequestBody {
   lastName: string;
   phoneNumber: string;
   emailAddress: string;
-  preferredCommMethod: string;
+  contactMethod: string;
   comments: string;
 }
 
@@ -24,7 +24,7 @@ interface EmailData {
   lastName: string;
   phoneNumber: string;
   emailAddress: string;
-  preferredCommMethod: string;
+  contactMethod: string;
   comments: string;
   bodyText: string;
   senderName: string;
@@ -41,7 +41,7 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
     lastName,
     phoneNumber,
     emailAddress,
-    preferredCommMethod,
+    contactMethod,
     comments,
   } = req.body as RequestBody;
 
@@ -51,10 +51,10 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
   }
 
   // Additional checks to ensure all required fields are present
-  if (!firstName || !lastName || !phoneNumber || !emailAddress || !preferredCommMethod || !comments) {
+  if (!firstName || !lastName || !phoneNumber || !emailAddress || !contactMethod || !comments) {
     return res
       .status(400)
-      .json('All fields (firstName, lastName, phoneNumber, emailAddress, preferredCommMethod, comments) are required.');
+      .json('All fields (firstName, lastName, phoneNumber, emailAddress, contactMethod, comments) are required.');
   }
 
   // Read the template file
@@ -69,7 +69,7 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
     lastName,
     phoneNumber,
     emailAddress,
-    preferredCommMethod,
+    contactMethod,
     comments,
     bodyText: `${firstName} ${lastName} completed the form submission. See details below:`,
     senderName: '',
@@ -93,7 +93,7 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
     lastName,
     phoneNumber,
     emailAddress,
-    preferredCommMethod,
+    contactMethod,
     comments,
     bodyText: 'Thanks for reaching out to me! I received your form submission with the following details:',
     senderName: 'Thomas Hanson',
