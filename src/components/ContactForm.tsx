@@ -24,6 +24,7 @@ export default function ContactForm() {
   } = useForm<FormData>();
 
   const [phone, setPhone] = useState('');
+  const [unformattedPhone, setUnformattedPhone] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -31,8 +32,7 @@ export default function ContactForm() {
     setIsSubmitting(true);
   
     try {
-      // Perform API request to submit the form data
-      const response = await axios.post("/api/sendEmail", {
+      await axios.post("/api/sendEmail", {
         "email": data.email,
         "firstName": data.firstName,
         "lastName": data.lastName,
@@ -43,9 +43,11 @@ export default function ContactForm() {
         "subjectIn": "[thanson.dev] Contact Form Submission",
         "subjectOut": "[thanson.dev] Thank you for your submission!"
       });
-  
-      // Handle the API response as needed (e.g., show a success message)
-      console.log('API Response:', response.data);
+
+      await axios.post("/api/sendMessage", {
+        "phone": unformattedPhone,
+        "message": "[thanson.dev] Hi, {} Thank you for reaching out to me! I received your form submission:\nPhone Number: {}\nEmail:{}\nComments: {}\n\nI will reach back out as soon as possible."
+      });
 
       // Reset the form after successful submission
       reset();
@@ -118,7 +120,10 @@ export default function ContactForm() {
             id="phoneNumber"
             format="+1 (###) ###-####"
             mask="_"
-            onValueChange={(value) => setPhone(value.formattedValue)}
+            onValueChange={(value) => {
+              setPhone(value.formattedValue);
+              setUnformattedPhone(value.value);
+            }}
             required
             {...register('phoneNumber')}
             value={phone}
