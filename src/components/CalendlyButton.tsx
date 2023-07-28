@@ -22,7 +22,7 @@ export default function CalendlyModal() {
       url="https://calendly.com/thanson-dev/15-20-minute-screening-interview"
       rootElement={rootElement}
       text="📅 Schedule a meeting with me!"
-      className="text-2xl"
+      className="text-2xl pb-6 underline text-blue-600"
     />
   );
 }
