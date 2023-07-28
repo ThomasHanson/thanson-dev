@@ -13,7 +13,7 @@ export default function About() {
             I am currently working on learning new technologies and pursuing a Software Engineering position, where I can land a dream job and grow my career. You can find some of my other projects on my GitHub.
           </p>
           <p className="text-center mb-6">
-            Outside of work, I love to try new things and am a self-proclaimed adrenaline junkie. I have been skydiving over 15 times and learned how to fly a paramotor at Aviator PPG with 7 other student pilots.
+            Outside of work, I love to try new things and anything involging addrenaline. I have been skydiving over 15 times and learned how to fly a paramotor at Aviator PPG with 7 other student pilots.
           </p>
         </section>
       </div>
