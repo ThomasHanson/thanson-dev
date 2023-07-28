@@ -77,7 +77,7 @@ export default function ContactForm() {
             type="text"
             id="firstName"
             {...register('firstName', { required: true })}
-            className="border-gray-300 rounded-md w-full p-2"
+            className="border border-gray-400 rounded-md w-full p-2"
           />
           {errors.firstName && (
             <span className="text-red-500 text-sm">{errors.firstName.message}</span>
@@ -91,7 +91,7 @@ export default function ContactForm() {
             type="text"
             id="lastName"
             {...register('lastName', { required: true })}
-            className="border-gray-300 rounded-md w-full p-2"
+            className="border border-gray-400 rounded-md w-full p-2"
           />
           {errors.lastName && (
             <span className="text-red-500 text-sm">{errors.lastName.message}</span>
@@ -105,7 +105,7 @@ export default function ContactForm() {
             type="email"
             id="email"
             {...register('email')}
-            className="border-gray-300 rounded-md w-full p-2"
+            className="border border-gray-400 rounded-md w-full p-2"
           />
           {errors.email && (
             <span className="text-red-500 text-sm">{errors.email.message}</span>
@@ -127,7 +127,7 @@ export default function ContactForm() {
             required
             {...register('phoneNumber')}
             value={phone}
-            className="border-gray-300 rounded-md w-full p-2"
+            className="border border-gray-400 rounded-md w-full p-2"
           />
           {errors.phoneNumber && (
             <span className="text-red-500 text-sm">{errors.phoneNumber.message}</span>
@@ -164,7 +164,7 @@ export default function ContactForm() {
           <textarea
             id="comments"
             {...register('comments')}
-            className="border-gray-300 rounded-md w-full p-2"
+            className="border border-gray-400 rounded-md w-full p-2"
           />
         </div>
       </div>
