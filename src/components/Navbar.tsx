@@ -3,15 +3,12 @@ import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { BsList } from 'react-icons/bs';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 const Navbar = () => {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setMenuOpen] = useState(false);
-  
-  function toggleTheme() {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  }
 
   function toggleMenu() {
     setMenuOpen(!isMenuOpen);
@@ -35,21 +32,7 @@ const Navbar = () => {
 
           <div className="flex items-center space-x-4 md:hidden">
             {/* Hamburger menu */}
-            <Switch
-              checked={theme === 'dark'}
-              onChange={toggleTheme}
-              className={`${
-                theme === 'dark' ? 'bg-green-600' : 'bg-gray-600'
-              } relative inline-flex flex-shrink-0 h-5 w-11 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
-            >
-              <span className="sr-only">Toggle dark mode</span>
-              <span
-                aria-hidden="true"
-                className={`${
-                  theme === 'dark' ? 'translate-x-6' : 'translate-x-0'
-                } pointer-events-none inline-block h-4 w-4 rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
-              />
-            </Switch>
+            <ThemeSwitcher />
             <button
               type="button"
               className={`text-gray-600 hover:text-gray-900 focus:outline-none focus:text-gray-900 ${
@@ -71,21 +54,7 @@ const Navbar = () => {
           </div>
 
           <div className={`hidden md:flex md:items-center md:space-x-4 ${isMenuOpen ? 'block' : 'hidden'}`}>
-            <Switch
-              checked={theme === 'dark'}
-              onChange={toggleTheme}
-              className={`${
-                theme === 'dark' ? 'bg-green-600' : 'bg-gray-600'
-              } relative inline-flex flex-shrink-0 h-5 w-11 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
-            >
-              <span className="sr-only">Toggle dark mode</span>
-              <span
-                aria-hidden="true"
-                className={`${
-                  theme === 'dark' ? 'translate-x-6' : 'translate-x-0'
-                } pointer-events-none inline-block h-4 w-4 rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
-              />
-            </Switch>
+            <ThemeSwitcher />
           </div>
         </div>
       </div>
