@@ -11,7 +11,10 @@ type Props = {
 export default function ProjectPage({ project }: Props) {
   const MDXComponent = useMDXComponent(project.body.code)
   return (
-    <Page>
+    <Page
+      title={project.title}
+      description={project.summary}
+    >
       <div className="container mx-auto mt-16 max-w-[920px] py-12 px-4">
         <div className="mt-4 flex flex-col space-y-4">
           <div className="flex items-center text-base">
