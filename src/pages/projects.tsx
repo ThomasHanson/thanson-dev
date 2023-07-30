@@ -21,7 +21,10 @@ interface ProjectProps {
 
 export default function Projects({ projects }: ProjectProps) {
   return (
-    <Page>
+    <Page
+      title="Thomas Hanson - Projects"
+      description="A list of my past/current projects that I have worked on."
+    >
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map(({ slug, title, summary, coverImage, tags, demoLink, githubLink }) => (

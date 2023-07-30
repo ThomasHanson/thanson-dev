@@ -4,7 +4,10 @@ import Page from "~/components/Page";
 
 export default function About() {
   return (
-    <Page>
+    <Page
+      title="Thomas Hanson - About"
+      description="A page that highlights my background and hobbies outside of work."
+    >
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="items-start space-y-4 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
           <div className="flex flex-col items-center pt-8">
