@@ -6,6 +6,10 @@ const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   swcMinify: true,
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
 };
 
 // Merge MDX config with Next.js config
