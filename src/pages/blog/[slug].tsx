@@ -3,13 +3,17 @@ import { allPosts } from "contentlayer/generated";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import Page from "~/components/Page";
+import { useTheme } from 'next-themes';
 
 type Props = {
   post: Post;
 };
 
 export default function PostPage({ post }: Props) {
-  const MDXComponent = useMDXComponent(post.body.code)
+
+  const { theme } = useTheme();
+  const MDXComponent = useMDXComponent(post.body.code);
+  
   return (
     <Page
       title={post.title}
@@ -24,7 +28,7 @@ export default function PostPage({ post }: Props) {
           </h1>
           <div className="h-8" />
         </div>
-        <article className="prose">
+        <article className={`prose ${theme === 'dark' ? 'prose-invert' : ''}`}>
           <MDXComponent />
         </article>
       </div>

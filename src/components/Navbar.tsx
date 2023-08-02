@@ -5,8 +5,8 @@ import { BsList } from 'react-icons/bs';
 import { ThemeSwitcher } from './ThemeSwitcher';
 
 const Navbar = () => {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const { theme } = useTheme();
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   function toggleMenu() {

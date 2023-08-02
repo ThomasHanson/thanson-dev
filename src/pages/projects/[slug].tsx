@@ -3,13 +3,17 @@ import { allProjects } from "contentlayer/generated";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import Page from "~/components/Page";
+import { useTheme } from 'next-themes';
 
 type Props = {
   project: Project;
 };
 
 export default function ProjectPage({ project }: Props) {
-  const MDXComponent = useMDXComponent(project.body.code)
+  
+  const { theme } = useTheme();
+  const MDXComponent = useMDXComponent(project.body.code);
+
   return (
     <Page
       title={project.title}
@@ -24,7 +28,9 @@ export default function ProjectPage({ project }: Props) {
           </h1>
           <div className="h-8" />
         </div>
-        <MDXComponent />
+        <article className={`prose ${theme === 'dark' ? 'prose-invert' : ''}`}>
+          <MDXComponent />
+        </article>
       </div>
     </Page>
   );
