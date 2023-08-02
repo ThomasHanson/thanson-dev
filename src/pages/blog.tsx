@@ -18,7 +18,10 @@ interface BlogProps {
 
 export default function Blog({ posts }: BlogProps) {
   return (
-    <Page>
+    <Page
+      title="Thomas Hanson - Blog"
+      description="A list of my past/current posts that I have worked on."
+    >
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map(({ slug, title, summary, coverImage, tags }) => (

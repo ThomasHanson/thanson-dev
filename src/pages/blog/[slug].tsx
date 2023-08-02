@@ -11,7 +11,10 @@ type Props = {
 export default function PostPage({ post }: Props) {
   const MDXComponent = useMDXComponent(post.body.code)
   return (
-    <Page>
+    <Page
+      title={post.title}
+      description={post.summary}
+    >
       <div className="container mx-auto mt-16 max-w-[920px] py-12 px-4">
         <div className="mt-4 flex flex-col space-y-4">
           <div className="flex items-center text-base">

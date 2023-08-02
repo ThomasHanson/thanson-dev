@@ -1,4 +1,3 @@
-import { Switch } from '@headlessui/react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -35,6 +34,7 @@ const Navbar = () => {
             <ThemeSwitcher />
             <button
               type="button"
+              aria-label="Hamburger icon for navigation bar"
               className={`text-gray-600 hover:text-gray-900 focus:outline-none focus:text-gray-900 ${
                 theme === 'dark' ? 'text-white' : ''
               }`}

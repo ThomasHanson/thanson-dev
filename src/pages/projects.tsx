@@ -21,7 +21,10 @@ interface ProjectProps {
 
 export default function Projects({ projects }: ProjectProps) {
   return (
-    <Page>
+    <Page
+      title="Thomas Hanson - Projects"
+      description="A list of my past/current projects that I have worked on."
+    >
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map(({ slug, title, summary, coverImage, tags, demoLink, githubLink }) => (
@@ -60,6 +63,7 @@ export default function Projects({ projects }: ProjectProps) {
                   {demoLink && (
                     <Link 
                       href={demoLink}
+                      rel="noopener noreferrer" target="_blank"
                       className="px-6 py-2 flex justify-center items-center bg-blue-500 hover:bg-blue-600 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg mb-2"
                     >
                       <BsEye className="mr-2" />
@@ -69,6 +73,7 @@ export default function Projects({ projects }: ProjectProps) {
                   {githubLink && (
                     <Link
                       href={githubLink}
+                      rel="noopener noreferrer" target="_blank"
                       className="px-6 py-2 flex justify-center items-center bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                     >
                       <BsGithub className="mr-2" />
