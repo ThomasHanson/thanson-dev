@@ -1,24 +1,23 @@
 import { NextResponse, NextRequest } from 'next/server';
-import { PublishCommand , PublishCommandOutput, SNSClient } from '@aws-sdk/client-sns';
+import { PublishCommand, PublishCommandOutput, SNSClient } from '@aws-sdk/client-sns';
 import { ContactFormValues } from '@/app/contact/page';
 import dotenv from 'dotenv';
 
-dotenv.config()
+dotenv.config();
 
 const sns = new SNSClient({
   credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
   },
-
-  region: process.env.AWS_REGION,
+  region: process.env.AWS_REGION!,
 });
 
 type ResponseData = {
   message: string;
   result?: PublishCommandOutput;
   error?: any;
-}
+};
 
 export const POST = async (req: NextRequest) => {
   const {
@@ -27,7 +26,7 @@ export const POST = async (req: NextRequest) => {
     email,
     phoneNum,
     prefContact,
-    comments
+    comments,
   }: ContactFormValues = await req.json();
 
   const params = {
@@ -38,7 +37,7 @@ export const POST = async (req: NextRequest) => {
               Communication Preference: ${prefContact}\n
               Comments: ${comments}`,
     Subject: '[thanson.dev] Contact Submission',
-    TopicArn: process.env.AWS_SNS_TOPIC_ARN,
+    TopicArn: process.env.AWS_SNS_TOPIC_ARN!,
   };
 
   try {
@@ -48,4 +47,4 @@ export const POST = async (req: NextRequest) => {
   } catch (error) {
     return NextResponse.json({ message: 'Failed to send email', error }, { status: 500 });
   }
-}
+};
