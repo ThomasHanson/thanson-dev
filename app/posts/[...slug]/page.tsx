@@ -1,73 +1,69 @@
 "use client";
 
-import { notFound } from "next/navigation"
-import { allPosts } from "contentlayer/generated"
+import { notFound } from "next/navigation";
+import { allPosts } from "contentlayer/generated";
 
-import { Metadata } from "next"
-import { Mdx } from "@/components/mdx-components"
-import { NextSeo } from "next-seo"
-import Posts from "../page"
+import { Mdx } from "@/components/mdx-components";
+import { NextSeo } from "next-seo";
 
 interface PostProps {
   params: {
-    slug: string[]
-  }
+    slug: string[];
+  };
 }
 
 async function getPostFromParams(params: PostProps["params"]) {
-  const slug = params?.slug?.join("/")
-  const post = allPosts.find((post) => post.slugAsParams === slug)
+  const slug = params?.slug?.join("/");
+  const post = allPosts.find((post) => post.slugAsParams === slug);
 
   if (!post) {
-    null
+    null;
   }
 
-  return post
+  return post;
 }
 
 export async function generateStaticParams(): Promise<PostProps["params"][]> {
   return allPosts.map((post) => ({
     slug: post.slugAsParams.split("/"),
-  }))
+  }));
 }
 
 export default async function PostPage({ params }: PostProps) {
-  const post = await getPostFromParams(params)
+  const post = await getPostFromParams(params);
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
   return (
     <>
-    <NextSeo
-    title={post.title}
-    description={post.summary || undefined}
-    canonical={post.slug}
-    openGraph={{
-        type: 'article',
-        article: {
+      <NextSeo
+        title={post.title}
+        description={post.summary || undefined}
+        canonical={post.slug}
+        openGraph={{
+          type: "article",
+          article: {
             publishedTime: post.date,
             ...(post.lastMod && { modifiedTime: post.lastMod }),
-            authors: [
-                'https://www.thanson.dev/about',
-            ],
+            authors: ["https://www.thanson.dev/about"],
             ...(post.tags && { tags: post.tags }),
-        },
-        url: 'https://www.thanson.dev/posts',
-        images: post.coverImage
+          },
+          url: "https://www.thanson.dev/posts",
+          images: post.coverImage
             ? [
                 {
-                    url: post.coverImage,
-                    width: 850,
-                    height: 650,
-                    alt: 'Cover image',
+                  url: post.coverImage,
+                  width: 850,
+                  height: 650,
+                  alt: "Cover image",
                 },
-            ]
+              ]
             : [],
-        site_name: 'Thomas Hanson',
-    }}
-/>
+          site_name: "Thomas Hanson",
+        }}
+      />
 
       <article className="py-6 prose dark:prose-invert">
         <h1 className="mb-2">{post.title}</h1>
@@ -75,5 +71,5 @@ export default async function PostPage({ params }: PostProps) {
         <Mdx code={post.body.code} />
       </article>
     </>
-  )
+  );
 }

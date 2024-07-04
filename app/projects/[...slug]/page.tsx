@@ -1,52 +1,54 @@
-import { notFound } from "next/navigation"
-import { allProjects } from "contentlayer/generated"
+import { notFound } from "next/navigation";
+import { allProjects } from "contentlayer/generated";
 
-import { Metadata } from "next"
-import { Mdx } from "@/components/mdx-components"
+import { Metadata } from "next";
+import { Mdx } from "@/components/mdx-components";
 
 interface ProjectProps {
   params: {
-    slug: string[]
-  }
+    slug: string[];
+  };
 }
 
 async function getProjectFromParams(params: ProjectProps["params"]) {
-  const slug = params?.slug?.join("/")
-  const project = allProjects.find((project) => project.slugAsParams === slug)
+  const slug = params?.slug?.join("/");
+  const project = allProjects.find((project) => project.slugAsParams === slug);
 
   if (!project) {
-    null
+    null;
   }
 
-  return project
+  return project;
 }
 
 export async function generateMetadata({
   params,
 }: ProjectProps): Promise<Metadata> {
-  const project = await getProjectFromParams(params)
+  const project = await getProjectFromParams(params);
 
   if (!project) {
-    return {}
+    return {};
   }
 
   return {
     title: project.title,
-    description: project.description,
-  }
+    description: project.summary,
+  };
 }
 
-export async function generateStaticParams(): Promise<ProjectProps["params"][]> {
+export async function generateStaticParams(): Promise<
+  ProjectProps["params"][]
+> {
   return allProjects.map((project) => ({
     slug: project.slugAsParams.split("/"),
-  }))
+  }));
 }
 
 export default async function ProjectPage({ params }: ProjectProps) {
-  const project = await getProjectFromParams(params)
+  const project = await getProjectFromParams(params);
 
   if (!project) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -55,5 +57,5 @@ export default async function ProjectPage({ params }: ProjectProps) {
       <hr className="my-4" />
       <Mdx code={project.body.code} />
     </article>
-  )
+  );
 }

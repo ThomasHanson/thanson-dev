@@ -1,23 +1,17 @@
-import { useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { FaGoogle } from "react-icons/fa";
 import { IoMdCalendar } from "react-icons/io";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SiGooglecalendar, SiCalendly } from "react-icons/si";
 import { InlineWidget } from "react-calendly";
-import Script from 'next/script';
-import React from 'react';
+import React from "react";
 
 export function ScheduleButton() {
   const height = "600px";
@@ -34,7 +28,8 @@ export function ScheduleButton() {
         <DialogHeader>
           <DialogTitle>Schedule a Meeting with Me</DialogTitle>
           <DialogDescription>
-            You can schedule directly through Google Calendar or use Calendly to find a convenient time.
+            You can schedule directly through Google Calendar or use Calendly to
+            find a convenient time.
           </DialogDescription>
         </DialogHeader>
         <Tabs defaultValue="googleCal">
@@ -57,17 +52,17 @@ export function ScheduleButton() {
             </div>
           </TabsContent>
           <TabsContent value="calendly">
-            <div className='w-full h-full'>
-              <InlineWidget 
+            <div className="w-full h-full">
+              <InlineWidget
                 styles={{
-                  height: height
+                  height: height,
                 }}
-                url="https://calendly.com/thanson-dev/15-20-minute-screening-interview" 
+                url="https://calendly.com/thanson-dev/15-20-minute-screening-interview"
               />
             </div>
           </TabsContent>
         </Tabs>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

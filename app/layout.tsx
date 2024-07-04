@@ -1,16 +1,15 @@
 "use client";
 
-import "./globals.css"
-import { Inter } from "next/font/google"
-import { Analytics } from "@/components/analytics"
-import { ThemeProvider } from "@/components/theme-provider"
-import Navbar from "@/components/navbar"
-import { LayoutProvider, useLayout } from "@/app/context/layout-context"
-import React from "react"
-import { DefaultSeo, NextSeo } from "next-seo";
-import Footer from "@/components/footer";
+import "./globals.css";
+import { Inter } from "next/font/google";
+import { Analytics } from "@/components/analytics";
+import { ThemeProvider } from "@/components/theme-provider";
+import Navbar from "@/components/navbar";
+import { LayoutProvider, useLayout } from "@/app/context/layout-context";
+import React from "react";
+import { NextSeo } from "next-seo";
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] });
 
 // export const metadata = {
 //   title: "Create Next App",
@@ -18,7 +17,7 @@ const inter = Inter({ subsets: ["latin"] })
 // }
 
 interface RootLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
@@ -30,15 +29,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
           description="Description about pages."
           canonical="https://dhanar98.hashnode.dev/"
           openGraph={{
-            url: 'https://dhanar98.hashnode.dev/',
-            title: 'Open Graph Title',
-            description: 'Open Graph Description',
-            site_name: 'Dhanar98',
+            url: "https://dhanar98.hashnode.dev/",
+            title: "Open Graph Title",
+            description: "Open Graph Description",
+            site_name: "Dhanar98",
           }}
           twitter={{
-            handle: '@dhanar98',
-            site: '@dhanar98',
-            cardType: 'summary_large_image',
+            handle: "@dhanar98",
+            site: "@dhanar98",
+            cardType: "summary_large_image",
           }}
         />
       </head>
@@ -54,13 +53,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
 
-const LayoutWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const LayoutWrapper: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const { isFullWidth } = useLayout();
   return (
-    <div className="mx-auto py-10 px-4">
+    <div className="mx-auto px-4">
       <header className="max-w-7xl mx-auto">
         <Navbar />
       </header>
@@ -69,4 +70,4 @@ const LayoutWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) =>
       </main>
     </div>
   );
-}
+};

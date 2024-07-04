@@ -1,15 +1,15 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import React from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const WavingHand = () => {
   return (
     <motion.div
       style={{
         marginBottom: "-20px",
-        marginRight: "-45px",
+        marginRight: "-48px",
         paddingBottom: "20px",
-        paddingRight: "45px",
+        paddingRight: "48px",
         display: "inline-block",
       }}
       animate={{ rotate: [0, 20, 0] }}
@@ -21,13 +21,13 @@ const WavingHand = () => {
       }}
     >
       <Image
-        src="/images/waving-hand-emoji.png"
-        width={40}
-        height={40}
+        src="/images/waving-hand.svg"
+        width={48}
+        height={48}
         alt="Waving hand emoji"
       />
-      </motion.div>
-  )
-}
+    </motion.div>
+  );
+};
 
-export default WavingHand
+export default WavingHand;
