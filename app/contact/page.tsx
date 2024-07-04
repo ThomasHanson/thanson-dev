@@ -17,15 +17,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
-import { PhoneNumberUtil } from "google-libphonenumber";
 import { MdEmail } from "react-icons/md";
 import { ScheduleButton } from "@/components/schedule-button";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import { useToast } from "@/components/ui/use-toast";
-import { ToastAction } from "@/components/ui/toast";
-
-const phoneUtil = PhoneNumberUtil.getInstance();
 
 const formSchema = z.object({
   firstName: z
@@ -57,7 +53,7 @@ const formSchema = z.object({
     .max(320, {
       message: "Email must be 320 characters or less",
     }),
-  prefContact: z.enum(["email", "text"], {
+  prefContact: z.enum(["Email", "Text"], {
     required_error: "You must select a preferred communication method",
   }),
   comments: z.string().max(500, {
@@ -65,11 +61,9 @@ const formSchema = z.object({
   }),
 });
 
-type ContactFormValues = z.infer<typeof formSchema>;
+export type ContactFormValues = z.infer<typeof formSchema>;
 
 const Contact = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formSuccess, setFormSuccess] = useState(false);
   const { toast } = useToast();
   
   const form = useForm<z.infer<typeof formSchema>>({
@@ -84,7 +78,6 @@ const Contact = () => {
   });
 
   const onSubmit = async (values: ContactFormValues) => {
-    setIsSubmitting(true);
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
@@ -95,20 +88,16 @@ const Contact = () => {
       });
 
       if (response.ok) {
-        setFormSuccess(true);
         form.reset(); // Reset form values on successful submission
         toast({
           title: "Uh oh! Something went wrong.",
           description: "There was a problem with your request.",
-          action: <ToastAction altText="Try again">Try again</ToastAction>,
         })
       } else {
         console.error('Failed to send email');
       }
     } catch (error) {
       console.error('Error:', error);
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -208,7 +197,7 @@ const Contact = () => {
                     >
                       <FormItem className="flex items-center space-x-2 space-y-0">
                         <FormControl>
-                          <RadioGroupItem value="email" />
+                          <RadioGroupItem value="Email" />
                         </FormControl>
                         <FormLabel className="hover:cursor-pointer">
                           Email
@@ -217,7 +206,7 @@ const Contact = () => {
 
                       <FormItem className="flex items-center space-x-2 space-y-0">
                         <FormControl>
-                          <RadioGroupItem value="text" />
+                          <RadioGroupItem value="Text" />
                         </FormControl>
                         <FormLabel className="hover:cursor-pointer">
                           Text Message
@@ -225,7 +214,7 @@ const Contact = () => {
                       </FormItem>
                     </RadioGroup>
                   </FormControl>
-                  {form.watch("prefContact") === "text" && (
+                  {form.watch("prefContact") === "Text" && (
                     <FormDescription>
                       By submitting this form and entering your number above,
                       you agree to receive automated text messages.
