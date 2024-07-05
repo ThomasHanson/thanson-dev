@@ -1,10 +1,8 @@
-"use client";
-
 import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 
 import { Mdx } from "@/components/mdx-components";
-import { NextSeo } from "next-seo";
+import { Metadata } from "next";
 
 interface PostProps {
   params: {
@@ -23,6 +21,21 @@ async function getPostFromParams(params: PostProps["params"]) {
   return post;
 }
 
+export async function generateMetadata({
+  params,
+}: PostProps): Promise<Metadata> {
+  const project = await getPostFromParams(params);
+
+  if (!project) {
+    return {};
+  }
+
+  return {
+    title: project.title,
+    description: project.summary,
+  };
+}
+
 export async function generateStaticParams(): Promise<PostProps["params"][]> {
   return allPosts.map((post) => ({
     slug: post.slugAsParams.split("/"),
@@ -38,7 +51,7 @@ export default async function PostPage({ params }: PostProps) {
 
   return (
     <>
-      <NextSeo
+      {/* <NextSeo
         title={post.title}
         description={post.summary || undefined}
         canonical={post.slug}
@@ -63,7 +76,7 @@ export default async function PostPage({ params }: PostProps) {
             : [],
           site_name: "Thomas Hanson",
         }}
-      />
+      /> */}
 
       <article className="py-6 prose dark:prose-invert">
         <h1 className="mb-2">{post.title}</h1>

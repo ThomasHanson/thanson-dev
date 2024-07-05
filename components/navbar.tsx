@@ -65,7 +65,7 @@ const Navbar = () => {
         <div className="md:hidden">
           <NavItem href="/" closeMenu={closeMenu}>Home</NavItem>
           <NavItem href="/about" closeMenu={closeMenu}>About</NavItem>
-          <NavItem href="/blog" closeMenu={closeMenu}>Blog</NavItem>
+          <NavItem href="/posts" closeMenu={closeMenu}>Posts</NavItem>
           <NavItem href="/projects" closeMenu={closeMenu}>Projects</NavItem>
           <NavItem href="/contact" closeMenu={closeMenu}>Contact</NavItem>
           <NavItem href="/uses" closeMenu={closeMenu}>Uses</NavItem>
