@@ -14,6 +14,10 @@ const Navbar = () => {
     setMenuOpen(!isMenuOpen);
   }
 
+  function closeMenu() {
+    setMenuOpen(false);
+  }
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -44,12 +48,12 @@ const Navbar = () => {
         <div
           className={`hidden md:flex md:items-center md:space-x-4 ${isMenuOpen ? "block" : "hidden"}`}
         >
-          <NavItem href="/">Home</NavItem>
-          <NavItem href="/about">About</NavItem>
-          <NavItem href="/posts">Posts</NavItem>
-          <NavItem href="/projects">Projects</NavItem>
-          <NavItem href="/contact">Contact</NavItem>
-          <NavItem href="/uses">Uses</NavItem>
+          <NavItem href="/" closeMenu={closeMenu}>Home</NavItem>
+          <NavItem href="/about" closeMenu={closeMenu}>About</NavItem>
+          <NavItem href="/posts" closeMenu={closeMenu}>Posts</NavItem>
+          <NavItem href="/projects" closeMenu={closeMenu}>Projects</NavItem>
+          <NavItem href="/contact" closeMenu={closeMenu}>Contact</NavItem>
+          <NavItem href="/uses" closeMenu={closeMenu}>Uses</NavItem>
         </div>
         <div
           className={`hidden md:flex md:items-center md:space-x-4 ${isMenuOpen ? "block" : "hidden"}`}
@@ -59,12 +63,12 @@ const Navbar = () => {
       </div>
       {isMenuOpen && (
         <div className="md:hidden">
-          <NavItem href="/">Home</NavItem>
-          <NavItem href="/about">About</NavItem>
-          <NavItem href="/blog">Blog</NavItem>
-          <NavItem href="/projects">Projects</NavItem>
-          <NavItem href="/contact">Contact</NavItem>
-          <NavItem href="/uses">Uses</NavItem>
+          <NavItem href="/" closeMenu={closeMenu}>Home</NavItem>
+          <NavItem href="/about" closeMenu={closeMenu}>About</NavItem>
+          <NavItem href="/blog" closeMenu={closeMenu}>Blog</NavItem>
+          <NavItem href="/projects" closeMenu={closeMenu}>Projects</NavItem>
+          <NavItem href="/contact" closeMenu={closeMenu}>Contact</NavItem>
+          <NavItem href="/uses" closeMenu={closeMenu}>Uses</NavItem>
         </div>
       )}
     </nav>
@@ -74,13 +78,15 @@ const Navbar = () => {
 type NavItemProps = {
   href: string;
   children: React.ReactNode;
+  closeMenu: () => void;
 };
 
-const NavItem = ({ href, children }: NavItemProps) => {
+const NavItem = ({ href, children, closeMenu }: NavItemProps) => {
   return (
     <Link
       href={href}
       className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium block"
+      onClick={closeMenu}
     >
       {children}
     </Link>
