@@ -24,6 +24,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html>
       <head>
+        <script
+          async
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="05c8a7e3-1fcd-483a-a4d6-0ed49761d7da">
+        </script>
+        
         <NextSeo
           title="title"
           description="Description about pages."
