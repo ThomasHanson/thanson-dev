@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import profilePic from "@/public/developer-pic-1.png";
+import profilePic from "@/public/headshot.png";
 import { Button, buttonVariants } from "@/components/ui/button";
 import WavingHand from "@/components/waving-hand";
 import { FaArrowRight } from "react-icons/fa";
@@ -43,7 +43,7 @@ const HeroContent = () => (
 
 const HeroImage = () => (
   <div className="z-10">
-    <Image src={profilePic} alt="mockup" width={300} height={300} />
+    <Image src={profilePic} alt="Headshot" className="rounded-full" width={300} height={300} />
   </div>
 );
 
