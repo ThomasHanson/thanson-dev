@@ -28,9 +28,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           async
           defer
           src="https://cloud.umami.is/script.js"
-          data-website-id="05c8a7e3-1fcd-483a-a4d6-0ed49761d7da">
+          data-website-id={process.env.UMAMI_WEBSITE_ID}>
         </script>
-        
+
         <NextSeo
           title="title"
           description="Description about pages."
