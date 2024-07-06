@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -41,9 +41,11 @@ const formSchema = z.object({
       message: "Last name must be 20 characters or less",
     }),
     phoneNum: z
-      .string()
-      .refine(isValidPhoneNumber, { message: "Invalid phone number" })
-      .or(z.literal("")),
+    .string()
+    .refine(value => !value || isValidPhoneNumber(value), {
+      message: "Invalid phone number"
+    })
+    .or(z.literal("")),
   email: z
     .string()
     .email("Valid email address is required")
@@ -77,7 +79,14 @@ const Contact = () => {
     },
   });
 
+  useEffect(() => {
+    form.watch((value) => {
+      isValidPhoneNumber(value.phoneNum || "");
+    });
+  }, [form.watch]);
+
   const onSubmit = async (values: ContactFormValues) => {
+    isValidPhoneNumber(values.phoneNum || "")
     try {
       // Call API to send SMS to self and optionally to the user based on communication preference
       const smsResponse = await fetch('/api/send-sms', {
@@ -205,7 +214,7 @@ const Contact = () => {
                       <FormControl>
                         <PhoneInput defaultCountry="US" {...field} />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage errors={form.formState.errors} name="phoneNum" />
                     </FormItem>
                   )}
                 />
@@ -232,13 +241,16 @@ const Contact = () => {
                         </FormLabel>
                       </FormItem>
 
-                      <FormItem className="flex items-center space-x-2 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="Text" />
-                        </FormControl>
-                        <FormLabel className="hover:cursor-pointer">
-                          Text Message
-                        </FormLabel>
+                      <FormItem className="flex flex-col space-y-2">
+                        <div className="flex items-center space-x-2">
+                          <FormControl>
+                            <RadioGroupItem value="Text" />
+                          </FormControl>
+                          <FormLabel className="hover:cursor-pointer">
+                            Text Message
+                          </FormLabel>
+                        </div>
+                        <FormMessage />
                       </FormItem>
                     </RadioGroup>
                   </FormControl>
@@ -268,7 +280,7 @@ const Contact = () => {
                     You may include any additional info or feedback that may be
                     helpful.
                   </FormDescription>
-                  <FormMessage />
+                  <FormMessage errors={form.formState.errors} name="comments" />
                 </FormItem>
               )}
             />
