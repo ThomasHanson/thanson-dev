@@ -79,25 +79,53 @@ const Contact = () => {
 
   const onSubmit = async (values: ContactFormValues) => {
     try {
-      const response = await fetch('/api/send-email', {
+      // Call API to send SMS to self and optionally to the user based on communication preference
+      const smsResponse = await fetch('/api/send-sms', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(values),
       });
-
-      if (response.ok) {
-        form.reset(); // Reset form values on successful submission
-        toast({
-          title: "Uh oh! Something went wrong.",
-          description: "There was a problem with your request.",
-        })
-      } else {
-        console.error('Failed to send email');
+  
+      const smsResult = await smsResponse.json();
+      if (!smsResponse.ok) {
+        throw new Error(smsResult.message || 'Failed to send SMS');
       }
+  
+      console.log('SMS sent successfully', smsResult);
+  
+      // Call API to send email to self with form details
+      const emailResponse = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+  
+      if (!emailResponse.ok) {
+        throw new Error('Failed to send email');
+      }
+  
+      console.log('Email sent successfully');
+  
+      // Reset form values on successful submission
+      form.reset();
+  
+      // Show success toast message
+      toast({
+        title: "Success!",
+        description: "Your form was submitted successfully.",
+      });
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Form submission error:', error);
+  
+      // Show error toast message
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+      });
     }
   };
 

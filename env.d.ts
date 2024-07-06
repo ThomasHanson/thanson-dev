@@ -8,6 +8,7 @@ declare namespace NodeJS {
       AWS_SNS_TOPIC_ARN: string;
       UMAMI_WEBSITE_ID: string;
       DATABASE_URL: string;
+      PHONE_NUMBER: string;
     }
   }
   
