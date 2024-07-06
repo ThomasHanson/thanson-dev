@@ -214,7 +214,7 @@ const Contact = () => {
                       <FormControl>
                         <PhoneInput defaultCountry="US" {...field} />
                       </FormControl>
-                      <FormMessage errors={form.formState.errors} name="phoneNum" />
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -280,7 +280,7 @@ const Contact = () => {
                     You may include any additional info or feedback that may be
                     helpful.
                   </FormDescription>
-                  <FormMessage errors={form.formState.errors} name="comments" />
+                  <FormMessage />
                 </FormItem>
               )}
             />
