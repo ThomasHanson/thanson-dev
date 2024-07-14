@@ -212,7 +212,7 @@ const Contact = () => {
                     <FormItem>
                       <FormLabel>Phone Number</FormLabel>
                       <FormControl>
-                        <PhoneInput defaultCountry="US" {...field} />
+                        <PhoneInput defaultCountry="US" {...field} limitMaxLength />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
