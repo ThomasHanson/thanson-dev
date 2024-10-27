@@ -8,6 +8,7 @@ import Navbar from "@/components/navbar";
 import { LayoutProvider, useLayout } from "@/app/context/layout-context";
 import React from "react";
 import { Metadata } from "next";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,12 +20,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html>
       <head>
-        <script
-          async
-          defer
-          src="https://cloud.umami.is/script.js"
-          data-website-id={process.env.UMAMI_WEBSITE_ID}>
-        </script>
         <link rel="Shortcut icon" href="/public/images/favicon.ico" />
       </head>
 
@@ -38,6 +33,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <Analytics />
         </ThemeProvider>
       </body>
+      
+      <Script
+        defer
+        src="https://cloud.umami.is/script.js"
+        data-website-id={process.env.UMAMI_WEBSITE_ID}
+        />
     </html>
   );
 }
