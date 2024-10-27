@@ -32,7 +32,7 @@ const HeroContent = () => (
       <a
         rel="noreferrer noopener"
         href="/resume/Thomas_Hanson_CV.pdf"
-        download="Thomas_Hanson_CV.pdf"
+        target="_blank"
         className={`w-full md:w-1/3 ${buttonVariants({ variant: "outline" })}`}
       >
         Download CV
