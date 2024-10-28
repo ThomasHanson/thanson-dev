@@ -6,8 +6,8 @@ declare namespace NodeJS {
       AWS_SECRET_ACCESS_KEY: string;
       AWS_REGION: string;
       AWS_SNS_TOPIC_ARN: string;
-      UMAMI_WEBSITE_ID: string;
-      DATABASE_URL: string;
+      NEXT_PUBLIC_UMAMI_WEBSITE_ID: string;
+      NEXT_PUBLIC_DATABASE_URL: string;
       PHONE_NUMBER: string;
     }
   }

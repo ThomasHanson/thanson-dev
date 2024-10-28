@@ -2,12 +2,10 @@
 
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { Analytics } from "@/components/analytics";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
 import { LayoutProvider, useLayout } from "@/app/context/layout-context";
 import React from "react";
-import { Metadata } from "next";
 import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -30,15 +28,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <LayoutProvider>
             <LayoutWrapper>{children}</LayoutWrapper>
           </LayoutProvider>
-          <Analytics />
         </ThemeProvider>
       </body>
       
       <Script
-        defer
-        src="https://cloud.umami.is/script.js"
-        data-website-id={process.env.UMAMI_WEBSITE_ID}
-        />
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+      />
     </html>
   );
 }

@@ -32,6 +32,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated"
-  ],
+, "next-seo-config.js"  ],
   "exclude": ["node_modules"]
 }
