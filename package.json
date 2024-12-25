@@ -33,6 +33,7 @@
     "autoprefixer": "10.4.14",
     "aws-sdk": "^2.1654.0",
     "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "contentlayer": "^0.3.2",
     "dotenv": "^16.4.5",
