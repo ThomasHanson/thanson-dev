@@ -32,16 +32,16 @@ export function ScheduleButton() {
             find a convenient time.
           </DialogDescription>
         </DialogHeader>
-        <Tabs defaultValue="googleCal">
+        <Tabs defaultValue="gCal">
           <TabsList className="space-x-2">
-            <TabsTrigger value="googleCal">
+            <TabsTrigger value="gCal">
               <SiGooglecalendar size={20} className="mr-2" /> Google Calendar
             </TabsTrigger>
             <TabsTrigger value="calendly">
               <SiCalendly size={20} className="mr-2" /> Calendly
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="googleCal">
+          <TabsContent value="gCal">
             <div className="w-full h-full">
               <iframe
                 src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2ClD9UcchbBK8TYVf0V-sQBYOu6lmMJNOVNLubLfOHtaDPierxJ3VNcLT83nvedveb564ncnxm?gv=true"
@@ -57,7 +57,7 @@ export function ScheduleButton() {
                 styles={{
                   height: height,
                 }}
-                url="https://calendly.com/thanson-dev/15-20-minute-screening-interview"
+                url="https://calendly.com/thanson-dev/30-minute-meeting"
               />
             </div>
           </TabsContent>

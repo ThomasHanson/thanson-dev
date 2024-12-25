@@ -16,7 +16,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html>
+    <html lang="en">
       <head>
         <link rel="Shortcut icon" href="/public/images/favicon.ico" />
       </head>
